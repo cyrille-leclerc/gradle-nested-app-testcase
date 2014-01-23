@@ -23,6 +23,7 @@ dependencies {
     applicationDependencies 'org.apache.tomcat:tomcat:8.0.0-RC10@zip'
 }
 
+// embed the dependencies declared with "applicationDependencies" into the "dist" dir of the generated application
 applicationDistribution.from(configurations.applicationDependencies) {
     into "dist"
 }
