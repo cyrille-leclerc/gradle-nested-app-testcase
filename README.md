@@ -13,7 +13,7 @@ How can I
 ## Parent `build.gradle` fragment
 
 
-```json
+```groovy
 configurations {
     applicationDependencies
 }
