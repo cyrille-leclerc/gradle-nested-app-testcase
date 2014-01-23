@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+group="localdomain.localhost"
+version="1.0-SNAPSHOT"
+
+mainClassName = "localdomain.localhost.Start"
+
+install.dependsOn installApp
+assemble.dependsOn distZip
+
+configurations {
+    applicationDependencies
+}
+
+
+dependencies {
+    compile 'args4j:args4j:2.0.26'
+
+    // QUESTION: how can I reference the generated my-nested-app-1.0.zip file instead of ?
+    applicationDependencies project(path: ':my-nested-app')
+    applicationDependencies 'org.apache.tomcat:tomcat:8.0.0-RC10@zip'
+}
+
+applicationDistribution.from(configurations.applicationDependencies) {
+    into "dist"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.10'
+}

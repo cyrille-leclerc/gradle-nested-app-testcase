@@ -1,0 +1,3 @@
+rootProject.name = "my-parent-app"
+
+include 'my-nested-app'
